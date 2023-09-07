@@ -5,7 +5,7 @@ const connection = new Client({
   host: 'localhost',
   user: 'postgres',
   port: 5432,
-  password: '12345',
+  password: '12345', // I know, but every devices have localhost:5432 :,)????
   database: 'Ecotec'
 })
 connection.connect((err) => {
