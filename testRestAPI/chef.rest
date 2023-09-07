@@ -1,0 +1,22 @@
+GET http://localhost:4000/chef/getAll
+
+###
+POST http://localhost:4000/chef/create
+Content-Type: application/json
+
+{
+  "name": "Mr. New",
+  "email": "chef@gmail.com",
+  "password": "12345"
+}
+
+###
+PUT http://localhost:4000/chef/update/2
+Content-Type: application/json
+
+{
+  "name": "new chef name"
+}
+
+###
+DELETE http://localhost:4000/chef/delete/2

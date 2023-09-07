@@ -1,0 +1,24 @@
+GET http://localhost:4000/order_item/getAll
+
+### Creating Orderitem
+POST http://localhost:4000/order_item/create
+Content-Type: application/json
+
+{
+    "order_id": 3,
+    "menu_id": 2,
+    "quantity": 3
+}
+
+### Updating Orderitem # order_id&menu_id
+PUT http://localhost:4000/order_item/update/3&2
+Content-Type: application/json
+
+{
+    "order_id": 3,
+    "menu_id": 2,
+    "quantity": 10
+}
+
+###
+DELETE http://localhost:4000/order_item/delete/3&2

@@ -1,0 +1,24 @@
+GET http://localhost:4000/restaurant/getAllRestaurant
+
+### Creating Restaurant
+POST http://localhost:4000/restaurant/create
+Content-Type: application/json
+
+{
+  "name": "Oishi",
+  "location": "Mega, Bangna, BKK",
+  "schedule": "10 - 20",
+  "chef_id": 1,
+  "image": "rest2"
+}
+
+###
+PUT http://localhost:4000/restaurant/update/4
+Content-Type: application/json
+
+{
+  "name": "new restaurant name updated"
+}
+
+###
+DELETE http://localhost:4000/restaurant/delete/2

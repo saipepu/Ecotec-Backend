@@ -1,0 +1,22 @@
+GET http://localhost:4000/orders/getAll
+
+### Creating Restaurant
+POST http://localhost:4000/orders/create
+Content-Type: application/json
+
+{
+  "total_amount": 150,
+  "total_points": 200,
+  "pickup_time": "2023-09-16T09:50:00.000Z"
+}
+
+###
+PUT http://localhost:4000/orders/update/4
+Content-Type: application/json
+
+{
+  "pickup_time": "2023-10-16T09:50:00.000Z"
+}
+
+###
+DELETE http://localhost:4000/orders/delete/4

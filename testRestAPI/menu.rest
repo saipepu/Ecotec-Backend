@@ -1,0 +1,29 @@
+GET http://localhost:4000/menu/getAll
+
+### Creating Menu
+POST http://localhost:4000/menu/create
+Content-Type: application/json
+
+{
+    "name": "Vegan Burger Large",
+    "points": 35,
+    "price": 150,
+    "category_id": 1,
+    "restaurant_id": 3,
+    "image_name": "vegan_burger"
+}
+
+### Creating Menu
+PUT http://localhost:4000/menu/update/2
+Content-Type: application/json
+
+{
+    "name": "Vegan Burger Extra Large, New",
+    "points": 50,
+    "price": 200,
+    "category_id": 2,
+    "image_name": "vegan_burger_new"
+}
+
+###
+DELETE http://localhost:4000/menu/delete/1
