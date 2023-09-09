@@ -26,22 +26,30 @@ exports.getAll = (req, res) => {
   })
 }
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
 
-  var order_id = req.body.order_id
-  var menu_id = req.body.menu_id
-  var quantity = req.body.quantity
-  console.log(req.body, 'here')
+  try {
+    const promises = req.body.map((item) => {
+      const { order_id, menu_id, quantity } = item;
+      console.log(item)
 
-  connection.query(`insert into order_item (order_id, menu_id, quantity) values (${order_id}, ${menu_id}, ${quantity});`, (err, result) => {
-    if(!err) {
-      console.log(result)
-      return res.status(200).json({ success: true, message: result })
-    } else {
-      console.log(err.message)
-      return res.status(400).json({ success: false, message: err.message })
-    }
-  })
+      return new Promise((resolve, reject) => {
+        connection.query(`insert into order_item (order_id, menu_id, quantity) values (${order_id}, ${menu_id}, ${quantity});`, (err, result) => {
+          if(err) {
+            reject(err)
+          } else {
+            resolve(result)
+          }
+        })
+      })
+    })
+    await Promise.all(promises)
+    
+    return res.status(200).json({ success: true, message: 'Created Order Items!'})
+  } catch (err) {
+    return res.status(400).json({ success: false, message: err.message })
+  }
+
 }
 
 exports.update = (req, res) => {

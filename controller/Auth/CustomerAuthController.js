@@ -26,7 +26,7 @@ exports.signIn = (req, res) => {
     console.log(result.rows)
     if(!err && result.rows.length > 0) {
       if(password == result?.rows[0]?.password) {
-        return res.status(200).json({ success: true, message: 'Sign In Successful!'})
+        return res.status(200).json({ success: true, message: result.rows[0]})
       } else {
         return res.status(200).json({ success: false, message: 'Incorrect Password'})
       }
