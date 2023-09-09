@@ -1,12 +1,21 @@
 GET http://localhost:4000/customer/getAllCustomer
 
 ### Creating User
-POST http://localhost:4000/customer/create
+POST http://localhost:4000/customer/auth/signup
 Content-Type: application/json
 
 {
-  "name": "pepu",
-  "email": "pepu@gmail.com",
+  "name": "new user",
+  "email": "newuser@gmail.com",
+  "password": "12345"
+}
+
+###
+POST http://localhost:4000/customer/auth/signin
+Content-Type: application/json
+
+{
+  "email": "newuser@gmail.com",
   "password": "12345"
 }
 

@@ -24,10 +24,10 @@ exports.create = (req, res) => {
 
   var total_amount = req.body.total_amount
   var total_points = req.body.total_points
-  var pickup_time = req.body.pickup_time
+  var pickup_time = req.body?.pickup_time || null
   console.log(req.body, 'here')
 
-  connection.query(`insert into orders (total_amount, total_points, pickup_time) values (${total_amount}, ${total_points}, '${pickup_time}');`, (err, result) => {
+  connection.query(`insert into orders (total_amount, total_points) values (${total_amount}, ${total_points});`, (err, result) => {
     if(!err) {
       console.log(result)
       return res.status(200).json({ success: true, message: result })

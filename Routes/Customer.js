@@ -1,10 +1,8 @@
-const { getAll, create, update, customerById, deleteUser } = require('../controller/CustomerController');
-const connection = require('../databasepg');
+const { getAll, update, customerById, deleteUser } = require('../controller/CustomerController');
 
 const customer = require('express').Router()
 
 customer.get('/getAllCustomer', getAll)
-customer.post('/create', create)
 customer.put('/update/:customerId', update)
 customer.delete('/delete/:customerId', deleteUser)
 

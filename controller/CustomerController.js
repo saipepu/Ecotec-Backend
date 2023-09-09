@@ -20,24 +20,6 @@ exports.getAll = (req, res) => {
   })
 }
 
-exports.create = (req, res) => {
-  var name = req.body.name
-  var email = req.body.email
-  var points = 0
-  var level = 'silver'
-  var password = req.body.password
-
-  connection.query(`insert into customer (name, email, points, level, password) values ('${name}', '${email}', '${points}','${level}', ${password})`, (err, result) => {
-    if(!err) {
-      console.log(result)
-      return res.status(200).json({ success: true, message: result })
-    } else {
-      console.log(err.message)
-      return res.status(400).json({ success: false, message: err.message })
-    }
-  })
-}
-
 exports.update = (req,res) => {
 
   var {id, name, email, points, level, password} = {...req.profile, ...req.body}

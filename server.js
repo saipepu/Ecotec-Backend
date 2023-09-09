@@ -11,6 +11,7 @@ const category = require('./Routes/Category');
 const menu = require('./Routes/Menu');
 const orders = require('./Routes/Orders');
 const order_item = require('./Routes/Orders_item');
+const customerAuth = require('./Routes/Auth/CustomerAuth');
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -41,5 +42,8 @@ app.use('/category', category)
 app.use('/menu', menu)
 app.use('/orders', orders)
 app.use('/order_item', order_item)
+
+// auth
+app.use('/customer/auth', customerAuth)
 
 app.listen(port, () => console.log('Server listens on Port:', port))

@@ -19,6 +19,18 @@ exports.getAll = (req, res) => {
     }
   })
 }
+exports.getAllMenu = (req, res) => {
+  const { restaurant_id } = req.query
+  connection.query(`select * from menu where restaurant_id = ${restaurant_id}`, (err, result) => {
+    if(!err) {
+      console.log(result.rows)
+      return res.status(200).json({ success: true, message: result.rows })
+    } else {
+      console.log(err.message);
+      return res.status(400).json({ success: false, message: err.message })
+    }
+  })
+}
 
 exports.create = (req, res) => {
 
