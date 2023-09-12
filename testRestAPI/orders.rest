@@ -1,5 +1,8 @@
 GET http://localhost:4000/orders/getAll
 
+###
+GET http://localhost:4000/orders/get/8
+
 ### Creating Restaurant
 POST http://localhost:4000/orders/create
 Content-Type: application/json
@@ -7,7 +10,8 @@ Content-Type: application/json
 {
   "total_amount": 150,
   "total_points": 200,
-  "pickup_time": "2023-09-16T09:50:00.000Z"
+  "pickup_time": "2023-09-16T09:50:00.000Z",
+  "customer_id": 5
 }
 
 ###

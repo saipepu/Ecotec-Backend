@@ -1,5 +1,8 @@
 GET http://localhost:4000/order_item/getAll
 
+###
+GET http://localhost:4000/order_item/getByOrderId?orderIds=28,29
+
 ### Creating Orderitem
 POST http://localhost:4000/order_item/create
 Content-Type: application/json

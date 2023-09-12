@@ -26,6 +26,22 @@ exports.getAll = (req, res) => {
   })
 }
 
+
+exports.getByOrderId = (req, res) => {
+  var { orderIds} = req.query
+  console.log(orderIds)
+  connection.query(`select * from order_item where order_id in (${orderIds})`, (err, result) => {
+    if(!err) {
+      console.log(result.rows)
+      return res.status(200).json({ success: true, message: result.rows })
+    } else {
+      console.log(err.message);
+      return res.status(400).json({ success: false, message: err.message })
+    }
+  })
+}
+
+
 exports.create = async (req, res) => {
 
   try {

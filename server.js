@@ -12,6 +12,11 @@ const menu = require('./Routes/Menu');
 const orders = require('./Routes/Orders');
 const order_item = require('./Routes/Orders_item');
 const customerAuth = require('./Routes/Auth/CustomerAuth');
+const path = require('path')
+
+// const mkdirp = require('mkdirp')
+// const uploadDir = './uploads'; // upload path directory
+// mkdirp.sync(uploadDir)
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -46,4 +51,27 @@ app.use('/order_item', order_item)
 // auth
 app.use('/customer/auth', customerAuth)
 
+// photo
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' });
+app.post('/upload', upload.single('image'), (req, res) => {
+  console.log(req.file)
+  const imagePath = req.file.path;
+  console.log(imagePath)
+  res.status(200).send({ success: true, message: imagePath });
+})
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 app.listen(port, () => console.log('Server listens on Port:', port))
+
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, uploadDir); // Specify the destination directory
+//   },
+//   filename: (req, file, cb) => {
+//     const uniqueFilename = Date.now()+'-'+file.originalname;
+//     cb(null, uniqueFilename);
+//   }
+// })
