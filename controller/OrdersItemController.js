@@ -29,7 +29,6 @@ exports.getAll = (req, res) => {
 
 exports.getByOrderId = (req, res) => {
   var { orderIds} = req.query
-  console.log(orderIds)
   connection.query(`select * from order_item where order_id in (${orderIds})`, (err, result) => {
     if(!err) {
       console.log(result.rows)

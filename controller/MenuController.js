@@ -8,13 +8,23 @@ exports.menuById = (req, res, next, id) => {
   })
 }
 
+exports.getMenuById = (req, res) => {
+  var { menu_id } = req.query
+  console.log('Getting menu by id ', menu_id)
+  connection.query(`select * from menu where id = ${menu_id}`, (err, result) => {
+    if(!err) {
+      return res.status(200).json({ success: true, message: result.rows })
+    } else {
+      return res.status(400).json({ success: false, message: err.message })
+    }
+  })
+}
+
 exports.getAll = (req, res) => {
   connection.query(`select * from menu`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       return res.status(200).json({ success: true, message: result.rows })
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })
@@ -23,10 +33,8 @@ exports.getAllMenu = (req, res) => {
   const { restaurant_id } = req.query
   connection.query(`select * from menu where restaurant_id = ${restaurant_id}`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       return res.status(200).json({ success: true, message: result.rows })
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })
@@ -40,14 +48,11 @@ exports.create = (req, res) => {
   var image_name = req.body.image_name
   var category_id = req.body.category_id
   var restaurant_id = req.body.restaurant_id
-  console.log(req.body)
 
   connection.query(`insert into menu (name, points, price, image_name, category_id, restaurant_id) values ('${name}', ${points}, ${price}, '${image_name}', ${category_id}, ${restaurant_id});`, (err, result) => {
     if(!err) {
-      console.log(result)
       return res.status(200).json({ success: true, message: result })
     } else {
-      console.log(err.message)
       return res.status(400).json({ success: false, message: err.message })
     }
   })
@@ -56,13 +61,10 @@ exports.create = (req, res) => {
 exports.update = (req,res) => {
 
   var {id, name, points, price, image_name, category_id, restaurant_id } = {...req.profile, ...req.body}
-  console.log(id, name, points, price, image_name, category_id, restaurant_id)
   connection.query(`update menu set name = '${name}', points = ${points}, price = ${price}, image_name='${image_name}', category_id = ${category_id}, restaurant_id = ${restaurant_id} where id = ${id};`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       return res.status(200).json({ success: true, message: result.rows })
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })
