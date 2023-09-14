@@ -19,6 +19,20 @@ exports.getAll = (req, res) => {
     }
   })
 }
+exports.getRestaurantByChefId = (req, res) => {
+
+  var {chef_id} = req.query
+  console.log('Getting Restaurant by Chef ID')
+  connection.query(`select * from restaurant where chef_id = ${chef_id}`, (err, result) => {
+    if(!err) {
+      console.log(result.rows)
+      return res.status(200).json({ success: true, message: result.rows })
+    } else {
+      console.log(err.message);
+      return res.status(400).json({ success: false, message: err.message })
+    }
+  })
+}
 
 exports.create = (req, res) => {
 
@@ -26,14 +40,13 @@ exports.create = (req, res) => {
   var location = req.body.location
   var schedule = req.body.schedule
   var chef_id = req.body.chef_id
-  var image = req.body.image
+  var image = req.body.image_name
 
+  console.log(req.body, 'creating restaurant')
   connection.query(`insert into restaurant (name, location, schedule, chef_id, image) values ('${name}', '${location}', '${schedule}', '${chef_id}', '${image}')`, (err, result) => {
     if(!err) {
-      console.log(result)
       return res.status(200).json({ success: true, message: result })
     } else {
-      console.log(err.message)
       return res.status(400).json({ success: false, message: err.message })
     }
   })

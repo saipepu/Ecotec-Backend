@@ -12,6 +12,7 @@ const menu = require('./Routes/Menu');
 const orders = require('./Routes/Orders');
 const order_item = require('./Routes/Orders_item');
 const customerAuth = require('./Routes/Auth/CustomerAuth');
+const chefAuth = require('./Routes/Auth/ChefAuth')
 const path = require('path')
 
 // const mkdirp = require('mkdirp')
@@ -50,9 +51,10 @@ app.use('/order_item', order_item)
 
 // auth
 app.use('/customer/auth', customerAuth)
+app.use('/chef/auth', chefAuth)
 
 // photo
-const multer = require('multer')
+const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 app.post('/upload', upload.single('image'), (req, res) => {
   console.log(req.file)

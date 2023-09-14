@@ -49,6 +49,7 @@ exports.create = (req, res) => {
   var category_id = req.body.category_id
   var restaurant_id = req.body.restaurant_id
 
+  console.log('Creating Menu')
   connection.query(`insert into menu (name, points, price, image_name, category_id, restaurant_id) values ('${name}', ${points}, ${price}, '${image_name}', ${category_id}, ${restaurant_id});`, (err, result) => {
     if(!err) {
       return res.status(200).json({ success: true, message: result })
