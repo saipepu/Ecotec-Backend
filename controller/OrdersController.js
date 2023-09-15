@@ -63,6 +63,7 @@ exports.update = (req, res) => {
 exports.deleteOrders = (req, res) => {
 
   var id = req.profile.id
+  console.log('Deleting Order Id', id)
   connection.query(`delete from orders where id =${id}`, (err, result) => {
     if(!err) {
       return res.status(200).json({ success: true, message: result.rows })

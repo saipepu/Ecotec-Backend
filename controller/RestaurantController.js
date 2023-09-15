@@ -39,7 +39,7 @@ exports.create = (req, res) => {
   var chef_id = req.body.chef_id
   var image = req.body.image_name
 
-  console.log(req.body, 'creating restaurant')
+  console.log('Creating restaurant', name)
   connection.query(`insert into restaurant (name, location, schedule, chef_id, image) values ('${name}', '${location}', '${schedule}', '${chef_id}', '${image}')`, (err, result) => {
     if(!err) {
       return res.status(200).json({ success: true, message: result })
