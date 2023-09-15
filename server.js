@@ -23,7 +23,6 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-  console.log('hi')
   return res.status(200).send('Hello! Welcome to my server.')
 })
 app.get('/image', (req, res) => {
@@ -31,11 +30,9 @@ app.get('/image', (req, res) => {
 
   connection.query(`Select * from menu`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       var src = 'data:image/png;base64,'+result.rows[1].image;
       return res.send(`<img id='imgElem' src=${src} />`)
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })
@@ -57,9 +54,7 @@ app.use('/chef/auth', chefAuth)
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 app.post('/upload', upload.single('image'), (req, res) => {
-  console.log(req.file)
   const imagePath = req.file.path;
-  console.log(imagePath)
   res.status(200).send({ success: true, message: imagePath });
 })
 

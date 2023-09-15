@@ -21,6 +21,7 @@ exports.getMenuById = (req, res) => {
 }
 
 exports.getAll = (req, res) => {
+  console.log("Menu: Getting All Menu.")
   connection.query(`select * from menu`, (err, result) => {
     if(!err) {
       return res.status(200).json({ success: true, message: result.rows })
@@ -76,10 +77,8 @@ exports.deleteMenu = (req, res) => {
   var id = req.profile.id
   connection.query(`delete from menu where id =${id}`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       return res.status(200).json({ success: true, message: result.rows })
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })

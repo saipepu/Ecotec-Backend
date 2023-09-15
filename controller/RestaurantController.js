@@ -9,12 +9,11 @@ exports.restaurantId = (req, res, next, id) => {
 }
 
 exports.getAll = (req, res) => {
+  console.log('Restaurant: Getting All Restaurant.')
   connection.query(`select * from restaurant`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       return res.status(200).json({ success: true, message: result.rows })
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })
@@ -25,10 +24,8 @@ exports.getRestaurantByChefId = (req, res) => {
   console.log('Getting Restaurant by Chef ID')
   connection.query(`select * from restaurant where chef_id = ${chef_id}`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       return res.status(200).json({ success: true, message: result.rows })
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })
@@ -57,10 +54,8 @@ exports.update = (req,res) => {
   var {id, name, location, schedule, chef_id, image } = {...req.profile, ...req.body}
   connection.query(`update restaurant set name = '${name}', location = '${location}', schedule = '${schedule}', image='${image}' where id = ${id};`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       return res.status(200).json({ success: true, message: result.rows })
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })
@@ -71,10 +66,8 @@ exports.deleteRestaurant = (req, res) => {
   var id = req.profile.id
   connection.query(`delete from restaurant where id =${id}`, (err, result) => {
     if(!err) {
-      console.log(result.rows)
       return res.status(200).json({ success: true, message: result.rows })
     } else {
-      console.log(err.message);
       return res.status(400).json({ success: false, message: err.message })
     }
   })

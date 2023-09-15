@@ -20,11 +20,19 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:4000/customer/update/3
+PUT http://localhost:4000/customer/update/5
 Content-Type: application/json
 
 {
   "name": "new user name"
+}
+
+###
+PUT http://localhost:4000/customer/updatePoints/5
+Content-Type: application/json
+
+{
+  "points": 50
 }
 
 ###
