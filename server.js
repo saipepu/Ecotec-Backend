@@ -15,6 +15,7 @@ const customerAuth = require('./Routes/Auth/CustomerAuth');
 const chefAuth = require('./Routes/Auth/ChefAuth')
 const path = require('path')
 const item = require('./Routes/Item');
+const customer_item = require('./Routes/Customer_item');
 
 // const mkdirp = require('mkdirp')
 // const uploadDir = './uploads'; // upload path directory
@@ -47,6 +48,7 @@ app.use('/menu', menu)
 app.use('/orders', orders)
 app.use('/order_item', order_item)
 app.use('/item', item)
+app.use('/customer_item', customer_item)
 
 // auth
 app.use('/customer/auth', customerAuth)
