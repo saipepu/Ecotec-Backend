@@ -14,6 +14,7 @@ const order_item = require('./Routes/Orders_item');
 const customerAuth = require('./Routes/Auth/CustomerAuth');
 const chefAuth = require('./Routes/Auth/ChefAuth')
 const path = require('path')
+const item = require('./Routes/Item');
 
 // const mkdirp = require('mkdirp')
 // const uploadDir = './uploads'; // upload path directory
@@ -45,6 +46,7 @@ app.use('/category', category)
 app.use('/menu', menu)
 app.use('/orders', orders)
 app.use('/order_item', order_item)
+app.use('/item', item)
 
 // auth
 app.use('/customer/auth', customerAuth)
@@ -61,14 +63,3 @@ app.post('/upload', upload.single('image'), (req, res) => {
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.listen(port, () => console.log('Server listens on Port:', port))
-
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, uploadDir); // Specify the destination directory
-//   },
-//   filename: (req, file, cb) => {
-//     const uniqueFilename = Date.now()+'-'+file.originalname;
-//     cb(null, uniqueFilename);
-//   }
-// })
