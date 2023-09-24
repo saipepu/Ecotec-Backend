@@ -37,11 +37,9 @@ exports.getByOrderId = (req, res) => {
 
 
 exports.create = async (req, res) => {
-
   try {
     const promises = req.body.map((item) => {
       const { order_id, menu_id, quantity } = item;
-
       return new Promise((resolve, reject) => {
         connection.query(`insert into order_item (order_id, menu_id, quantity) values (${order_id}, ${menu_id}, ${quantity});`, (err, result) => {
           if(err) {
@@ -53,12 +51,10 @@ exports.create = async (req, res) => {
       })
     })
     await Promise.all(promises)
-    
     return res.status(200).json({ success: true, message: 'Created Order Items!'})
   } catch (err) {
     return res.status(400).json({ success: false, message: err.message })
   }
-
 }
 
 exports.update = (req, res) => {

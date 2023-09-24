@@ -1,20 +1,20 @@
 const connection = require("../../databasepg")
 
-exports.signUp = (req, res) => {
-  var name = req.body.name
-  var email = req.body.email
-  var points = 0
-  var level = 'silver'
-  var password = req.body.password
+  exports.signUp = (req, res) => {
+    var name = req.body.name
+    var email = req.body.email
+    var points = 0
+    var level = 'silver'
+    var password = req.body.password
 
-  connection.query(`insert into customer (name, email, points, level, password) values ('${name}', '${email}', '${points}','${level}', ${password})`, (err, result) => {
-    if(!err) {
-      return res.status(200).json({ success: true, message: result })
-    } else {
-      return res.status(400).json({ success: false, message: err.message })
-    }
-  })
-}
+    connection.query(`insert into customer (name, email, points, level, password) values ('${name}', '${email}', '${points}','${level}', ${password})`, (err, result) => {
+      if(!err) {
+        return res.status(200).json({ success: true, message: result })
+      } else {
+        return res.status(400).json({ success: false, message: err.message })
+      }
+    })
+  }
 
 exports.signIn = (req, res) => {
   var password = req.body.password
@@ -30,5 +30,4 @@ exports.signIn = (req, res) => {
       return res.status(400).json({ success: false, message: 'User with this email does not exist' })
     }
   })
-  
 }

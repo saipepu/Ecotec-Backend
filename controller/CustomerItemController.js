@@ -1,9 +1,7 @@
 const connection = require('../databasepg')
 
 exports.getItemByCustomerId = (req, res) => {
-
   const customer_id = req.profile?.id
-
   console.log('Getting Item by Customer Id', customer_id)
   connection.query(`select * from customer_item where customer_id = ${customer_id}`, (err, result) => {
     if(!err) {

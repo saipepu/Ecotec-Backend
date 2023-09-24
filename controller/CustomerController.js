@@ -32,7 +32,6 @@ exports.update = (req,res) => {
 }
 
 exports.updatePoints = (req, res) => {
-
   var points = req.profile?.points + req.body?.points
   var id = req.profile?.id
   console.log('Update Customer Points')

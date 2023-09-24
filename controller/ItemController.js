@@ -1,7 +1,6 @@
 const connection = require('../databasepg')
 
 exports.getAll = (req, res) => {
-
   console.log('Getting Store Item.')
   connection.query(`select * from item`, (err, result) => {
     if(!err) {

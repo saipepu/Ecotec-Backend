@@ -9,7 +9,6 @@ exports.ordersById = (req, res, next, id) => {
 }
 
 exports.getOrderByCustomerId = (req, res) => {
-
   var customer_id = req.params.customer_id
   console.log(customer_id)
   connection.query(`select * from orders where customer_id = ${customer_id}`, (err, result) => {

@@ -42,14 +42,12 @@ exports.getAllMenu = (req, res) => {
 }
 
 exports.create = (req, res) => {
-
   var name = req.body.name
   var points = req.body.points
   var price = req.body.price
   var image_name = req.body.image_name
   var category_id = req.body.category_id
   var restaurant_id = req.body.restaurant_id
-
   console.log('Creating Menu')
   connection.query(`insert into menu (name, points, price, image_name, category_id, restaurant_id) values ('${name}', ${points}, ${price}, '${image_name}', ${category_id}, ${restaurant_id});`, (err, result) => {
     if(!err) {
@@ -61,7 +59,6 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req,res) => {
-
   var {id, name, points, price, image_name, category_id, restaurant_id } = {...req.profile, ...req.body}
   connection.query(`update menu set name = '${name}', points = ${points}, price = ${price}, image_name='${image_name}', category_id = ${category_id}, restaurant_id = ${restaurant_id} where id = ${id};`, (err, result) => {
     if(!err) {
@@ -73,7 +70,6 @@ exports.update = (req,res) => {
 }
 
 exports.deleteMenu = (req, res) => {
-
   var id = req.profile.id
   connection.query(`delete from menu where id =${id}`, (err, result) => {
     if(!err) {

@@ -4,7 +4,6 @@ exports.signUp = (req, res) => {
   var name = req.body.name
   var email = req.body.email
   var password = req.body.password
-
   console.log('Sign Up as Chef.')
   connection.query(`insert into chef (name, email, password) values ('${name}', '${email}', ${password})`, (err, result) => {
     if(!err) {
@@ -18,7 +17,6 @@ exports.signUp = (req, res) => {
 exports.signIn = (req, res) => {
   var password = req.body.password
   var email = req.body.email
-  
   console.log('Sign In as Chef.')
   connection.query(`select * from chef where email = '${email}'`, (err, result) => {
     if(!err && result.rows.length > 0) {
@@ -31,5 +29,4 @@ exports.signIn = (req, res) => {
       return res.status(400).json({ success: false, message: 'User with this email does not exist' })
     }
   })
-  
 }

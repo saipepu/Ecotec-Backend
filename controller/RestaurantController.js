@@ -18,8 +18,8 @@ exports.getAll = (req, res) => {
     }
   })
 }
-exports.getRestaurantByChefId = (req, res) => {
 
+exports.getRestaurantByChefId = (req, res) => {
   var {chef_id} = req.query
   console.log('Getting Restaurant by Chef ID')
   connection.query(`select * from restaurant where chef_id = ${chef_id}`, (err, result) => {
@@ -32,13 +32,11 @@ exports.getRestaurantByChefId = (req, res) => {
 }
 
 exports.create = (req, res) => {
-
   var name = req.body.name
   var location = req.body.location
   var schedule = req.body.schedule
   var chef_id = req.body.chef_id
   var image = req.body.image_name
-
   console.log('Creating restaurant', name)
   connection.query(`insert into restaurant (name, location, schedule, chef_id, image) values ('${name}', '${location}', '${schedule}', '${chef_id}', '${image}')`, (err, result) => {
     if(!err) {
